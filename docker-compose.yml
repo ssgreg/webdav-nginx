@@ -1,0 +1,22 @@
+version: '2'
+services:
+
+    webdav-nginx:
+        build: .
+        image: ssgreg/webdav-nginx:latest
+        hostname: webdav
+        restart: always
+        container_name: webdav
+
+        logging:
+            driver: json-file
+            options:
+                max-size: "10m"
+                max-file: "5"
+
+        volumes:
+            - /tmp:/srv/webdav
+
+        ports:
+            - "8080:8080"
+
